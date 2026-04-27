@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adil Salah — Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F3EF;
+      --ink: #1A1916;
+      --muted: #7A7670;
+      --accent: #2E5CFF;
+      --rule: #D8D4CC;
+      --card: #EEEAE3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 48px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      z-index: 100;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 0; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 48px; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      border-bottom: 1px solid var(--rule);
+      padding-top: 80px;
+    }
+
+    .hero-inner {
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+
+    .hero-label {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-label::before {
+      content: ''; display: block; width: 32px; height: 1px; background: var(--muted);
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(52px, 9vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+    }
+    h1 em { font-style: italic; color: var(--muted); }
+
+    .hero-desc {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .hero-links { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--ink); color: var(--bg); }
+    .btn-ghost { border-color: var(--rule); color: var(--muted); }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 56px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px; letter-spacing: -0.02em;
+    }
+    .section-num {
+      font-size: 11px; letter-spacing: 0.1em;
+      color: var(--muted); text-transform: uppercase;
+      margin-left: auto;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+    .skill-group { padding: 28px 0; border-bottom: 1px solid var(--rule); }
+    .skill-group:nth-child(odd) { padding-right: 40px; border-right: 1px solid var(--rule); }
+    .skill-group:nth-child(even) { padding-left: 40px; }
+    .skill-group:nth-last-child(-n+2) { border-bottom: none; }
+
+    .skill-category {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--card);
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--ink);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-list { display: flex; flex-direction: column; gap: 0; }
+    .project-item {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-start: start;
+      transition: background 0.2s;
+    }
+    .project-item:last-child { border-bottom: none; }
+
+    .project-status {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px;
+    }
+    .project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .project-desc {
+      color: var(--muted); font-size: 13px; line-height: 1.7;
+      margin-bottom: 16px; max-width: 540px;
+    }
+    .project-tech { display: flex; gap: 8px; flex-wrap: wrap; }
+    .project-tech span {
+      font-size: 11px; color: var(--muted);
+      border: 1px solid var(--rule); padding: 2px 10px;
+    }
+    .project-link {
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      border: 1px solid var(--rule); padding: 8px 16px;
+      white-space: nowrap; align-self: start;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .project-link:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+    /* ── AWARDS ── */
+    .awards-list { display: flex; flex-direction: column; }
+    .award-item {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 24px; padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+    .award-item:last-child { border-bottom: none; }
+    .award-year { font-size: 12px; color: var(--muted); padding-top: 2px; }
+    .award-title { font-size: 14px; margin-bottom: 4px; }
+    .award-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* ── CONTACT ── */
+    #contact { border-top: 1px solid var(--rule); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: start;
+    }
+    .contact-cta {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px; letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .contact-cta em { font-style: italic; color: var(--muted); }
+    .contact-links { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+    .contact-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 0; border-bottom: 1px solid var(--rule);
+      text-decoration: none; color: var(--ink);
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+    .contact-link:last-child { border-bottom: none; }
+    .contact-link-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 24px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: var(--muted);
+      max-width: 100%;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      .container { padding: 0 24px; }
+      section { padding: 72px 0; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .skill-group:nth-child(odd) { border-right: none; padding-right: 0; }
+      .skill-group:nth-child(even) { padding-left: 0; }
+      .skill-group:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+      .skill-group:last-child { border-bottom: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .project-item { grid-template-columns: 1fr; }
+      .award-item { grid-template-columns: 60px 1fr; gap: 16px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-name">Adil Salah</span>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-label">BCA Student &amp; Developer — Mangalore</div>
+        <h1>Adil<br/><em>Salah</em></h1>
+        <p class="hero-desc">
+          Building full-stack applications with Python, JavaScript and SQL.
+          Focused on clean code, thoughtful UI and practical solutions.
+          Open to internships and entry-level software roles.
+        </p>
+        <div class="hero-links">
+          <a href="#projects" class="btn">View Projects</a>
+          <a href="https://github.com/ADILSALAH996" target="_blank" class="btn btn-ghost">GitHub</a>
+          <a href="https://linkedin.com/in/adilsalah" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Skills</h2>
+        <span class="section-num">01</span>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-group">
+          <div class="skill-category">Languages</div>
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">C</span>
+            <span class="tag">C++</span>
+            <span class="tag">SQL</span>
+            <span class="tag">MySQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-category">Web</div>
+          <div class="skill-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Tkinter</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-category">Concepts</div>
+          <div class="skill-tags">
+            <span class="tag">OOP</span>
+            <span class="tag">Data Structures</span>
+            <span class="tag">CRUD</span>
+            <span class="tag">Database Management</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-category">Tools</div>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">MS Excel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Projects</h2>
+        <span class="section-num">02</span>
+      </div>
+      <div class="projects-list">
+
+        <div class="project-item reveal">
+          <div>
+            <div class="project-name">Food Billing System</div>
+            <p class="project-desc">GUI-based desktop application for generating food bills. Handles item selection, quantity management and automatic bill calculation, with receipt generation and file-based transaction storage.</p>
+            <div class="project-tech">
+              <span>Python</span><span>Tkinter</span><span>OOP</span><span>File I/O</span>
+            </div>
+          </div>
+          <a href="https://github.com/ADILSALAH996" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+
+        <div class="project-item reveal">
+          <div>
+            <div class="project-name">Personal Portfolio</div>
+            <p class="project-desc">Responsive portfolio website built with semantic HTML, CSS layouts and JavaScript for interactive elements including navigation and form handling.</p>
+            <div class="project-tech">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+          </div>
+          <a href="https://github.com/ADILSALAH996" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+
+        <div class="project-item reveal">
+          <div>
+            <div class="project-status">In Progress</div>
+            <div class="project-name">Movie Database Management System</div>
+            <p class="project-desc">Full-stack web application for managing movie records. Python backend with HTML/CSS/JavaScript frontend, implementing complete CRUD functionality with frontend-backend integration.</p>
+            <div class="project-tech">
+              <span>Python</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>SQL</span>
+            </div>
+          </div>
+          <a href="https://github.com/ADILSALAH996" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Awards &amp; Certifications</h2>
+        <span class="section-num">03</span>
+      </div>
+      <div class="awards-list">
+
+        <div class="award-item reveal">
+          <span class="award-year">2025</span>
+          <div>
+            <div class="award-title">2nd Prize — College Hackathon</div>
+            <div class="award-desc">Secured 2nd position in a competitive hackathon by the MCA Department. Collaborated in a team to design and present a working technical solution within time constraints.</div>
+          </div>
+        </div>
+
+        <div class="award-item reveal">
+          <span class="award-year">2025</span>
+          <div>
+            <div class="award-title">Python Certification — freeCodeCamp</div>
+            <div class="award-desc">Completed Python programming course covering syntax, control structures, functions and problem-solving exercises.</div>
+          </div>
+        </div>
+
+        <div class="award-item reveal">
+          <span class="award-year">2026</span>
+          <div>
+            <div class="award-title">Introduction to AWS Cloud — Builder Labs</div>
+            <div class="award-desc">Completed AWS training covering cloud fundamentals, core services and hands-on labs.</div>
+          </div>
+        </div>
+
+        <div class="award-item reveal">
+          <span class="award-year">2026</span>
+          <div>
+            <div class="award-title">AWS Solutions Architect — Fundamentals of Architecting</div>
+            <div class="award-desc">Learned AWS architecture principles, networking basics and cloud design concepts.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Contact</h2>
+        <span class="section-num">04</span>
+      </div>
+      <div class="contact-grid reveal">
+        <div>
+          <div class="contact-cta">Let's build<br/><em>something.</em></div>
+          <p style="margin-top:16px; color: var(--muted); font-size:13px; max-width:280px; line-height:1.7;">
+            Open to internships and entry-level software developer roles. Feel free to reach out.
+          </p>
+        </div>
+        <div>
+          <div class="contact-links">
+            <a href="mailto:adilsalah996@gmail.com" class="contact-link">
+              <span>adilsalah996@gmail.com</span>
+              <span class="contact-link-label">Email</span>
+            </a>
+            <a href="tel:+917510630067" class="contact-link">
+              <span>+91 75106 30067</span>
+              <span class="contact-link-label">Phone</span>
+            </a>
+            <a href="https://linkedin.com/in/adilsalah" target="_blank" class="contact-link">
+              <span>linkedin.com/in/adilsalah</span>
+              <span class="contact-link-label">LinkedIn</span>
+            </a>
+            <a href="https://github.com/ADILSALAH996" target="_blank" class="contact-link">
+              <span>github.com/ADILSALAH996</span>
+              <span class="contact-link-label">GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Adil Salah</span>
+    <span>BCA · Srinivas University · Mangalore</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
